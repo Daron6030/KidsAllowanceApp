@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Копилка Доченьки</title>
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Comic Neue', cursive;
+            font-family: 'Fredoka', system-ui, sans-serif;
             background: linear-gradient(180deg, #81D4FA, #B2EBF2);
             min-height: 100vh;
-            padding: 10px;
+            padding: 12px;
             position: relative;
             overflow: hidden;
         }
@@ -33,12 +33,12 @@
         .plus-btn {
             background: #9E9E9E;
             color: white;
-            font-size: 42px;
-            font-weight: bold;
-            padding: 20px;
+            font-size: 44px;
+            font-weight: 600;
+            padding: 22px;
             border-radius: 35px;
             text-align: center;
-            margin: 45px 0 12px 0;
+            margin: 50px 0 15px 0;
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             cursor: not-allowed;
         }
@@ -49,21 +49,21 @@
 
         .parents {
             background: rgba(255,255,255,0.97);
-            padding: 14px 20px;
-            border-radius: 22px;
+            padding: 16px 20px;
+            border-radius: 25px;
             display: flex;
             justify-content: space-around;
-            margin: 10px 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin: 12px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .balance-card {
             background: white;
             border-radius: 28px;
-            padding: 25px 20px 22px;
+            padding: 28px 20px 24px;
             text-align: center;
             box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-            margin: 15px 0;
+            margin: 18px 0;
             position: relative;
             overflow: hidden;
         }
@@ -72,10 +72,7 @@
             position: absolute;
             font-size: 29px;
             opacity: 0.14;
-            top: 12px;
-            left: 12px;
-            right: 12px;
-            bottom: 12px;
+            top: 12px; left: 12px; right: 12px; bottom: 12px;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
@@ -85,16 +82,30 @@
             z-index: 1;
         }
 
-        .balance { font-size: 66px; font-weight: bold; color: #1e3a8a; position: relative; z-index: 2; }
-        .available { font-size: 22px; font-weight: 900; color: #1e3a8a; letter-spacing: 2px; margin-top: 6px; position: relative; z-index: 2; }
+        .balance { 
+            font-size: 68px; 
+            font-weight: 700; 
+            color: #1e3a8a; 
+            position: relative; 
+            z-index: 2; 
+        }
+        .available { 
+            font-size: 23px; 
+            font-weight: 600; 
+            color: #1e3a8a; 
+            letter-spacing: 2px; 
+            margin-top: 6px; 
+            position: relative; 
+            z-index: 2; 
+        }
 
-        .btn-container { display: flex; gap: 12px; margin-top: 8px; }
+        .btn-container { display: flex; gap: 14px; margin-top: 10px; }
         .btn-green, .btn-red {
             flex: 1;
-            padding: 20px 12px;
+            padding: 22px 12px;
             border-radius: 22px;
             font-size: 18px;
-            font-weight: bold;
+            font-weight: 600;
             color: white;
             cursor: pointer;
             box-shadow: 0 6px 15px rgba(0,0,0,0.2);
@@ -115,10 +126,10 @@
         </div>
 
         <div class="parents">
-            <label style="font-size:17px; font-weight:bold; color:#FF69B4;">
+            <label style="font-size:17px; font-weight:600; color:#FF69B4;">
                 <input type="checkbox" id="mom" onchange="checkApproval()" style="transform:scale(1.4); margin-right:8px;"> Мама
             </label>
-            <label style="font-size:17px; font-weight:bold; color:#4FC3F7;">
+            <label style="font-size:17px; font-weight:600; color:#4FC3F7;">
                 <input type="checkbox" id="dad" onchange="checkApproval()" style="transform:scale(1.4); margin-right:8px;"> Папа
             </label>
         </div>
