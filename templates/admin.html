@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель</title>
+    <style>
+        body {
+            font-family: 'Comic Neue', Arial, sans-serif;
+            background: linear-gradient(#81D4FA, #B2EBF2);
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .card {
+            background: white;
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 { color: #1e3a8a; margin-bottom: 20px; }
+        .balance { font-size: 52px; font-weight: bold; color: #1e3a8a; margin: 20px 0; }
+        input[type="number"] {
+            font-size: 24px;
+            padding: 12px;
+            width: 180px;
+            text-align: center;
+            border-radius: 15px;
+            border: 2px solid #ddd;
+        }
+        button {
+            padding: 14px 28px;
+            font-size: 18px;
+            margin: 10px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+        .reset-btn { background: #FF5252; color: white; }
+        .save-btn { background: #4CAF50; color: white; }
+        .logout { background: #666; color: white; margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>👨‍💼 Админ-панель</h1>
+        
+        <p>Текущий баланс:</p>
+        <div class="balance">{{ balance }} ₽</div>
+
+        <form method="POST">
+            <button type="submit" name="reset" class="reset-btn">Сбросить баланс на 1000 ₽ (как в субботу)</button><br>
+            
+            <p style="margin:20px 0 10px;">Или установить свою сумму:</p>
+            <input type="number" name="new_balance" value="{{ balance }}" required>
+            <button type="submit" name="set_balance" class="save-btn">Сохранить</button>
+        </form>
+
+        <a href="/logout"><button class="logout">Выйти из админки</button></a>
+    </div>
+</body>
+</html>
