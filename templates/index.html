@@ -4,163 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Копилка Доченьки</title>
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Comic Neue', cursive;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background: linear-gradient(180deg, #81D4FA, #B2EBF2);
             min-height: 100vh;
-            padding: 10px;
-            position: relative;
-            overflow: hidden;
+            padding: 12px;
         }
-
-        .admin-btn {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(255,255,255,0.95);
-            color: #333;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-            z-index: 10;
-            text-decoration: none;
-        }
-
-        .plus-btn {
-            background: #9E9E9E;
-            color: white;
-            font-size: 42px;
-            font-weight: bold;
-            padding: 20px;
-            border-radius: 35px;
-            text-align: center;
-            margin: 45px 0 12px 0;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            cursor: not-allowed;
-        }
-        .plus-btn.active {
-            background: linear-gradient(135deg, #8A2BE2, #BA55D3);
-            cursor: pointer;
-        }
-
-        .parents {
-            background: rgba(255,255,255,0.97);
-            padding: 14px 20px;
-            border-radius: 22px;
-            display: flex;
-            justify-content: space-around;
-            margin: 10px 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .balance-card {
-            background: white;
-            border-radius: 28px;
-            padding: 25px 20px 22px;
-            text-align: center;
-            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-            margin: 15px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        .balance-card::before {
-            content: "🦄 🌈 🐴 ✨ 🌟 🐎 🌸 🦋 ⭐ 💖";
-            position: absolute;
-            font-size: 29px;
-            opacity: 0.14;
-            top: 12px;
-            left: 12px;
-            right: 12px;
-            bottom: 12px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            align-content: space-around;
-            line-height: 1.5;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .balance { font-size: 66px; font-weight: bold; color: #1e3a8a; position: relative; z-index: 2; }
-        .available { font-size: 22px; font-weight: 900; color: #1e3a8a; letter-spacing: 2px; margin-top: 6px; position: relative; z-index: 2; }
-
-        .btn-container { display: flex; gap: 12px; margin-top: 8px; }
-        .btn-green, .btn-red {
-            flex: 1;
-            padding: 20px 12px;
-            border-radius: 22px;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            cursor: pointer;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-            text-align: center;
-        }
-        .btn-green { background: linear-gradient(135deg, #4CAF50, #66BB6A); }
-        .btn-red  { background: linear-gradient(135deg, #FF5252, #FF6E6E); }
+        .test { background: #FF0000; color: white; text-align: center; padding: 10px; font-size: 18px; font-weight: bold; }
     </style>
 </head>
 <body>
-
-    <a href="/login" class="admin-btn">👨‍💼 Админ</a>
-
-    <div class="container">
-
-        <div id="plusBtn" class="plus-btn" onclick="submitForm('add100')">
-            +100 ₽
-        </div>
-
-        <div class="parents">
-            <label style="font-size:17px; font-weight:bold; color:#FF69B4;">
-                <input type="checkbox" id="mom" onchange="checkApproval()" style="transform:scale(1.4); margin-right:8px;"> Мама
-            </label>
-            <label style="font-size:17px; font-weight:bold; color:#4FC3F7;">
-                <input type="checkbox" id="dad" onchange="checkApproval()" style="transform:scale(1.4); margin-right:8px;"> Папа
-            </label>
-        </div>
-
-        <div class="balance-card">
-            <div class="balance">{{ balance }} ₽</div>
-            <p class="available">ДОСТУПНО</p>
-        </div>
-
-        <div class="btn-container">
-            <div class="btn-green" onclick="submitForm('minus50')">
-                -50 ₽<br><small>Я сама отдала</small>
-            </div>
-            <div class="btn-red" onclick="submitForm('minus100')">
-                -100 ₽<br><small>Наказание</small>
-            </div>
-        </div>
-
-    </div>
-
-    <form id="actionForm" method="POST" style="display:none;">
-        <input type="hidden" name="action" id="actionInput">
-    </form>
-
-    <script>
-        function checkApproval() {
-            const mom = document.getElementById('mom').checked;
-            const dad = document.getElementById('dad').checked;
-            const btn = document.getElementById('plusBtn');
-            if (mom && dad) btn.classList.add('active');
-            else btn.classList.remove('active');
-        }
-
-        function submitForm(action) {
-            const btn = document.getElementById('plusBtn');
-            if (action === 'add100' && !btn.classList.contains('active')) {
-                alert("❌ Нужно согласие Мамы и Папы!");
-                return;
-            }
-            document.getElementById('actionInput').value = action;
-            document.getElementById('actionForm').submit();
-        }
-    </script>
+    <div class="test">ТЕСТ ВЕРСИЯ 9 — ШРИФТ ДОЛЖЕН БЫТЬ НОРМАЛЬНЫМ</div>
+    <p style="text-align:center; margin-top:50px; font-size:22px;">Если ты видишь эту красную полосу — значит код обновился.</p>
 </body>
 </html>
