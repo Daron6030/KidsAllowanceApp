@@ -8,169 +8,192 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: linear-gradient(180deg, #81D4FA, #B2EBF2);
+            background: linear-gradient(#81D4FA, #B2EBF2);
             min-height: 100vh;
-            padding: 12px;
+            padding: 10px;
             position: relative;
             overflow: hidden;
         }
 
-        .admin-btn {
+        .sky {
             position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(255,255,255,0.95);
-            color: #333;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-            z-index: 10;
-            text-decoration: none;
+            top: 0; left: 0; right: 0;
+            height: 240px;
+            background: linear-gradient(#81D4FA, #B2EBF2);
+            z-index: -1;
+            overflow: hidden;
         }
 
+        .sun { font-size: 75px; position: absolute; top: 25px; left: 25px; }
+        .cloud1 { font-size: 40px; position: absolute; top: 40px; right: 80px; opacity: 0.9; }
+        .cloud2 { font-size: 35px; position: absolute; top: 90px; right: 30px; opacity: 0.8; }
+
         .plus-btn {
-            background: #9E9E9E;
+            background: linear-gradient(135deg, #8A2BE2, #BA55D3);
             color: white;
             font-size: 42px;
             font-weight: 700;
-            padding: 22px;
-            border-radius: 35px;
+            padding: 20px 30px;
+            border-radius: 50px;
             text-align: center;
-            margin: 50px 0 15px 0;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            cursor: not-allowed;
-        }
-        .plus-btn.active {
-            background: linear-gradient(135deg, #8A2BE2, #BA55D3);
-            cursor: pointer;
+            margin: 15px auto;
+            width: 92%;
+            max-width: 380px;
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
         }
 
-        .parents {
-            background: rgba(255,255,255,0.97);
-            padding: 16px 20px;
-            border-radius: 25px;
+        .content {
+            background: white;
+            border-radius: 30px;
+            padding: 20px;
+            margin-top: 10px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .title {
+            text-align: center;
+            font-size: 23px;
+            font-weight: 700;
+            margin: 15px 0 20px 0;
+        }
+
+        .checkboxes {
             display: flex;
-            justify-content: space-around;
-            margin: 12px 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .check {
+            flex: 1;
+            background: #f8f8f8;
+            padding: 14px 16px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            font-weight: 600;
         }
 
         .balance-card {
-            background: white;
-            border-radius: 28px;
-            padding: 28px 20px 24px;
+            background: #FFF9C4;
+            border-radius: 22px;
+            padding: 20px;
             text-align: center;
-            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-            margin: 18px 0;
-            position: relative;
-            overflow: hidden;
+            margin: 20px 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
-        .balance-card::before {
-            content: "🦄 🌈 🐴 ✨ 🌟 🐎 🌸 🦋 ⭐ 💖";
-            position: absolute;
-            font-size: 29px;
-            opacity: 0.14;
-            top: 12px; left: 12px; right: 12px; bottom: 12px;
+
+        .balance {
+            font-size: 62px;
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+
+        .btn-container {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            align-content: space-around;
-            line-height: 1.5;
-            pointer-events: none;
-            z-index: 1;
+            gap: 12px;
         }
 
-        .balance { 
-            font-size: 68px; 
-            font-weight: 700; 
-            color: #1e3a8a; 
-            position: relative; 
-            z-index: 2; 
-        }
-        .available { 
-            font-size: 23px; 
-            font-weight: 700; 
-            color: #1e3a8a; 
-            letter-spacing: 2px; 
-            margin-top: 6px; 
-            position: relative; 
-            z-index: 2; 
-        }
-
-        .btn-container { display: flex; gap: 14px; margin-top: 10px; }
         .btn-green, .btn-red {
             flex: 1;
-            padding: 22px 12px;
-            border-radius: 22px;
-            font-size: 18px;
-            font-weight: 600;
+            padding: 20px 10px;
+            border-radius: 20px;
             color: white;
-            cursor: pointer;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            font-weight: 700;
+            font-size: 18px;
             text-align: center;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.2);
         }
-        .btn-green { background: linear-gradient(135deg, #4CAF50, #66BB6A); }
-        .btn-red  { background: linear-gradient(135deg, #FF5252, #FF6E6E); }
+
+        .btn-green { background: #4CAF50; }
+        .btn-red  { background: #FF5252; }
     </style>
 </head>
 <body>
 
-    <a href="/login" class="admin-btn">👨‍💼 Админ</a>
+<div class="sky">
+    <div class="sun">☀️</div>
+    <div class="cloud1">☁️</div>
+    <div class="cloud2">☁️</div>
+</div>
 
-    <div class="container">
+<div class="container">
 
-        <div id="plusBtn" class="plus-btn" onclick="submitForm('add100')">
-            +100 ₽
+    <!-- Большая кнопка +100 -->
+    <div class="plus-btn" id="plusBtn" onclick="submitForm('add100')">
+        +100 ₽
+    </div>
+
+    <div style="text-align:center; color:#333; margin-bottom:8px; font-size:15px;">
+        Получено от родителей
+    </div>
+
+    <div class="content">
+
+        <div class="title">
+            Дочь была молодец! ❤️
         </div>
 
-        <div class="parents">
-            <label style="font-size:17px; font-weight:600; color:#FF69B4;">
-                <input type="checkbox" id="mom" onchange="checkApproval()" style="transform:scale(1.4); margin-right:8px;"> Мама
-            </label>
-            <label style="font-size:17px; font-weight:600; color:#4FC3F7;">
-                <input type="checkbox" id="dad" onchange="checkApproval()" style="transform:scale(1.4); margin-right:8px;"> Папа
-            </label>
+        <!-- Чекбоксы -->
+        <div class="checkboxes">
+            <div class="check">
+                <input type="checkbox" id="dad" onchange="checkApproval()" style="transform:scale(1.5)">
+                <span>Папа согласен</span>
+            </div>
+            <div class="check">
+                <input type="checkbox" id="mom" onchange="checkApproval()" style="transform:scale(1.5)">
+                <span>Мама согласна</span>
+            </div>
         </div>
 
+        <!-- Баланс -->
         <div class="balance-card">
             <div class="balance">{{ balance }} ₽</div>
-            <p class="available">ДОСТУПНО</p>
+            <div style="font-size:17px; color:#666; margin-top:4px;">Доступно</div>
         </div>
 
+        <!-- Кнопки списания -->
         <div class="btn-container">
             <div class="btn-green" onclick="submitForm('minus50')">
-                -50 ₽<br><small>Я сама отдала</small>
+                -50 ₽<br>
+                <small>Я сама отдала</small>
             </div>
             <div class="btn-red" onclick="submitForm('minus100')">
-                -100 ₽<br><small>Наказание</small>
+                -100 ₽<br>
+                <small>Наказание</small>
             </div>
         </div>
 
     </div>
+</div>
 
-    <form id="actionForm" method="POST" style="display:none;">
-        <input type="hidden" name="action" id="actionInput">
-    </form>
+<form id="actionForm" method="POST" style="display:none;">
+    <input type="hidden" name="action" id="actionInput">
+</form>
 
-    <script>
-        function checkApproval() {
-            const mom = document.getElementById('mom').checked;
-            const dad = document.getElementById('dad').checked;
-            const btn = document.getElementById('plusBtn');
-            if (mom && dad) btn.classList.add('active');
-            else btn.classList.remove('active');
+<script>
+    function checkApproval() {
+        const mom = document.getElementById('mom').checked;
+        const dad = document.getElementById('dad').checked;
+        const btn = document.getElementById('plusBtn');
+        if (mom && dad) btn.classList.add('active');
+        else btn.classList.remove('active');
+    }
+
+    function submitForm(action) {
+        const btn = document.getElementById('plusBtn');
+        if (action === 'add100' && !btn.classList.contains('active')) {
+            alert("❌ Нужно согласие Мамы и Папы!");
+            return;
         }
-
-        function submitForm(action) {
-            const btn = document.getElementById('plusBtn');
-            if (action === 'add100' && !btn.classList.contains('active')) {
-                alert("❌ Нужно согласие Мамы и Папы!");
-                return;
-            }
-            document.getElementById('actionInput').value = action;
-            document.getElementById('actionForm').submit();
-        }
-    </script>
+        document.getElementById('actionInput').value = action;
+        document.getElementById('actionForm').submit();
+    }
+</script>
 </body>
 </html>
