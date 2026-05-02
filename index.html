@@ -3,16 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Копилка Доченьки</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background: linear-gradient(180deg, #81D4FA, #B2EBF2);
             min-height: 100vh;
             padding: 12px;
             position: relative;
             overflow: hidden;
+        }
+
+        .test-banner {
+            background: #FF0000;
+            color: white;
+            text-align: center;
+            padding: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
 
         .admin-btn {
@@ -30,14 +43,14 @@
         }
 
         .plus-btn {
-            background: #9E9E9E;
+            background: #FF1493;   /* ярко-розовый для теста */
             color: white;
             font-size: 42px;
             font-weight: 700;
             padding: 22px;
             border-radius: 35px;
             text-align: center;
-            margin: 50px 0 15px 0;
+            margin: 10px 0 15px 0;
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             cursor: not-allowed;
         }
@@ -81,22 +94,8 @@
             z-index: 1;
         }
 
-        .balance { 
-            font-size: 68px; 
-            font-weight: 700; 
-            color: #1e3a8a; 
-            position: relative; 
-            z-index: 2; 
-        }
-        .available { 
-            font-size: 23px; 
-            font-weight: 700; 
-            color: #1e3a8a; 
-            letter-spacing: 2px; 
-            margin-top: 6px; 
-            position: relative; 
-            z-index: 2; 
-        }
+        .balance { font-size: 68px; font-weight: 700; color: #1e3a8a; position: relative; z-index: 2; }
+        .available { font-size: 23px; font-weight: 700; color: #1e3a8a; letter-spacing: 2px; margin-top: 6px; position: relative; z-index: 2; }
 
         .btn-container { display: flex; gap: 14px; margin-top: 10px; }
         .btn-green, .btn-red {
@@ -115,6 +114,8 @@
     </style>
 </head>
 <body>
+
+    <div class="test-banner">ТЕСТ ВЕРСИЯ 8 — ШРИФТ ДОЛЖЕН БЫТЬ НОРМАЛЬНЫМ</div>
 
     <a href="/login" class="admin-btn">👨‍💼 Админ</a>
 
