@@ -8,7 +8,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: linear-gradient(#81D4FA, #B2EBF2);
+            background: linear-gradient(180deg, #81D4FA, #B2EBF2);
             min-height: 100vh;
             padding: 12px;
             position: relative;
@@ -29,7 +29,6 @@
             text-decoration: none;
         }
 
-        /* Кнопка +100 — серая по умолчанию */
         .plus-btn {
             background: #9E9E9E;
             color: white;
@@ -47,9 +46,7 @@
             background: linear-gradient(135deg, #8A2BE2, #BA55D3);
             cursor: pointer;
         }
-        .plus-btn:active {
-            transform: scale(0.92);
-        }
+        .plus-btn:active { transform: scale(0.92); }
 
         .parents {
             background: rgba(255,255,255,0.97);
@@ -117,9 +114,7 @@
             text-align: center;
             transition: all 0.2s ease;
         }
-        .btn-green:active, .btn-red:active {
-            transform: scale(0.93);
-        }
+        .btn-green:active, .btn-red:active { transform: scale(0.93); }
         .btn-green { background: linear-gradient(135deg, #4CAF50, #66BB6A); }
         .btn-red  { background: linear-gradient(135deg, #FF5252, #FF6E6E); }
     </style>
@@ -159,20 +154,43 @@
 
     </div>
 
-    <!-- Звуки -->
-    <audio id="soundPlus" src="https://www.soundjay.com/buttons/beep-07.mp3"></audio>
-    <audio id="soundMinus50" src="https://www.soundjay.com/buttons/button-09.mp3"></audio>
-    <audio id="soundMinus100" src="https://www.soundjay.com/buttons/beep-08.mp3"></audio>
-
     <form id="actionForm" method="POST" style="display:none;">
         <input type="hidden" name="action" id="actionInput">
     </form>
 
     <script>
-        const soundPlus = document.getElementById('soundPlus');
-        const soundMinus50 = document.getElementById('soundMinus50');
-        const soundMinus100 = document.getElementById('soundMinus100');
-        const balanceText = document.getElementById('balanceText');
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            
+            osc.connect(gain);
+            gain.connect(audioContext.destination);
+
+            if (type === 'plus') {
+                // Звук монетки / подарка
+                osc.frequency.setValueAtTime(800, audioContext.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(1200, audioContext.currentTime + 0.4);
+                gain.gain.value = 0.6;
+                gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.5);
+            } 
+            else if (type === 'minus50') {
+                // Мягкий звук
+                osc.frequency.setValueAtTime(400, audioContext.currentTime);
+                gain.gain.value = 0.4;
+                gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.6);
+            } 
+            else if (type === 'minus100') {
+                // Строгий звук
+                osc.frequency.setValueAtTime(250, audioContext.currentTime);
+                gain.gain.value = 0.5;
+                gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.45);
+            }
+
+            osc.start();
+            osc.stop(audioContext.currentTime + 1);
+        }
 
         function checkApproval() {
             const mom = document.getElementById('mom').checked;
@@ -190,15 +208,14 @@
             }
 
             // Звуки
-            if (action === 'add100') soundPlus.play();
-            else if (action === 'minus50') soundMinus50.play();
-            else if (action === 'minus100') soundMinus100.play();
+            if (action === 'add100') playSound('plus');
+            else if (action === 'minus50') playSound('minus50');
+            else if (action === 'minus100') playSound('minus100');
 
-            // Анимация прыжка баланса
-            balanceText.style.transform = 'scale(1.15)';
-            setTimeout(() => {
-                balanceText.style.transform = 'scale(1)';
-            }, 150);
+            // Анимация баланса
+            const balanceText = document.getElementById('balanceText');
+            balanceText.style.transform = 'scale(1.18)';
+            setTimeout(() => { balanceText.style.transform = 'scale(1)'; }, 180);
 
             document.getElementById('actionInput').value = action;
             document.getElementById('actionForm').submit();
